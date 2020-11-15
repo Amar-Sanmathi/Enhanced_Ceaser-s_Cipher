@@ -1,0 +1,60 @@
+import time
+text = input("enter string: ")
+s = int(input("Enter first shift number: "))
+q = int(input("Enter second shift number: "))
+start = time.time()
+original = ''
+for char in text:
+    original = original + chr((ord(char) + s ) %255)
+print('#####################################################')    
+print("original string: ", text)
+print('#####################################################')
+print("original Ceaser cypher text: ", original)
+print('#####################################################')
+sudo_string = list(original)
+leng = len(sudo_string)
+total = s * q
+if (total % 2) == 0:
+    for i in range(0, leng):
+        if i % 2 == 0:
+            sudo_string[i] = chr((ord(sudo_string[i]) + q) %255)
+    print('The Final Cipher text is: ', *sudo_string)
+    
+    
+
+else:
+    for i in range(0, leng):
+        if i % 2 != 0:
+            sudo_string[i] = chr((ord(sudo_string[i]) + q) %255)
+    print('The Final Cipher text is: ', *sudo_string)
+
+if (total % 2) == 0:
+    for i in range(0, leng):
+        if i % 2 == 0:
+            sudo_string[i] = chr((ord(sudo_string[i]) - q) %255)
+    print('#####################################################')
+    print('Decryption using key 2 results in : ', *sudo_string)
+
+else:
+    for i in range(0, leng):
+        if i % 2 != 0:
+            sudo_string[i] = chr((ord(sudo_string[i]) - q) %255)
+    print('#####################################################')      
+    print('Decryption using key 2 results in : ', *sudo_string)
+
+
+decrypt = ""
+for x in sudo_string:
+    decrypt += x
+
+for char in decrypt:
+
+    decrypt = decrypt + chr((ord(char) - s) %255)
+    power = decrypt[leng:]
+print('#####################################################')      
+print('The Decrypted Message is :', power)
+print('#####################################################')      
+print('\n')
+end = time.time()
+print('Execution time:', end - start)
+input("Press Enter to exit")
